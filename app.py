@@ -11,4 +11,9 @@ if uploaded_file is not None:
         f.write(uploaded_file.getbuffer())
     chunks = text_processing(uploaded_file.name)
     chroma_db = ingest_pdf_to_DB(chunks)
+query = st.text_input("parla coi tuoi documenti facendo una domanda")
+if query: # la query non è una stringa vuota
+    more_relevant_docs = get_relevant_docs(query, chroma_db)
+    response = get_response_llm(query, more_relevant_docs)
 
+st.write(response.content)
