@@ -68,7 +68,7 @@ def get_response_llm(query: str, chunks:list)->str:
 
     context = " ".join([chunk.page_content for chunk in chunks]) # pythonic , more profesional
     template = ChatPromptTemplate.from_messages([
-    ("system", "Sei un assistente utile che risponde usando solo il contesto fornito."),
+    ("system", "Sei un assistente utile che risponde usando solo il contesto fornito se la risposta alla domanda non si trova nel documento devi rispondere con la scritta 'non abbastanza elementi per rispondere a questa domanda."),
     ("user", "Contesto: {context}\nDomanda: {question}")])
 
     llm = ChatOpenAI(model="gpt-4",
