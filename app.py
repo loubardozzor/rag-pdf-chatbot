@@ -27,5 +27,5 @@ query = st.text_input("parla coi tuoi documenti facendo una domanda")
 if query: # la query non è una stringa vuota
     more_relevant_docs = get_relevant_docs(query, chroma_db)
     response = get_response_llm(query, more_relevant_docs)
+    st.write(response.content)
 
-st.write(response.content)
